@@ -1,0 +1,42 @@
+## right side
+currentTime() {
+    printf "%*s" $COLUMNS "$(date +%R\ %a\ %d\ %b)"
+}
+
+## final form
+PS1='\[$(
+    tput sc
+    currentTime
+    tput rc
+)\]\[$(tput setaf 4)\]\w \$\[$(tput sgr0)\] '
+
+# fzf
+source /usr/share/fzf/key-bindings.bash
+export FZF_ALT_C_COMMAND="fd --type d --hidden --follow . "
+
+# noice
+shopt -s autocd
+shopt -s cdspell
+#set -o vi
+
+# profile stuffs
+# export PATH="${PATH}:${HOME}/.local/bin/"
+# export QT_QPA_PLATFORM="wayland"
+# export ANKI_WAYLAND="1"
+# export EDITOR="nvim"
+# export WLR_BACKEND="drm,libinput"
+# export DISPLAY=":0"
+# export XDG_SESSION_TYPE="wayland"
+# export SDL_VIDEODRIVER="wayland"
+# export TERM="linux"
+#
+# export XDG_CONFIG_HOME="${HOME}/.config/"
+# export XDG_LOCAL_HOME="${HOME}/.local/share"
+#
+# if test -z "${XDG_RUNTIME_DIR}"; then
+#   export XDG_RUNTIME_DIR=/tmp/${UUID}-runtime-dir
+#   if ! test -d "${XDG_RUNTIME_DIR}"; then
+#     mkdir "${XDG_RUNTIME_DIR}"
+#     chmod 0700 "${XDG_RUNTIME_DIR}"
+#   fi 
+# fi

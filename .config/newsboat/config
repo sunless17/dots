@@ -1,0 +1,20 @@
+# evil bindings
+bind-key j down
+bind-key k up
+bind-key l open
+bind-key h quit
+bind-key J next articlelist
+bind-key K prev articlelist
+bind-key G end
+bind-key g home
+
+# colors
+color listfocus green default
+color listfocus_unread green default
+
+# quality of life
+show-title-bar no
+show-keymap-hint no
+swap-title-and-hints no
+feedlist-format "%t"
+articlelist-format "%?T?|%-17T|  ?%t (%D)"
