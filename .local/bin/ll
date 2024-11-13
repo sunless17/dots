@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+#==========================================#
+# title       : video view                 #
+# date        : 2024-09-17                 #
+# author      : sunless47                  #
+# description : view youtube from terminal #
+# #========================================#
+
+# error handling (set -euo pipefail)
+set -o errexit
+set -o nounset
+set -o pipefail
+
+# youtube stream
+long-list(){
+ls \
+  --almost-all \
+  --format=verbose \
+  --reverse \
+  --color=always \
+  --sort=size \
+  --human-readable 
+}
+
+# calling function
+long-list

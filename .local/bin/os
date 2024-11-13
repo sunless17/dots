@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+#======================================#
+# title       : docker os's            #
+# date        : 2024-09-16             #
+# author      : sunless47              #
+# description : run containerized os's #
+#======================================#
+
+# error handling (set -euo pipefail)
+set -o errexit
+set -o nounset
+set -o pipefail
+
+# start ollama container
+docker-os() {
+  # selecting os
+  SELECTED_OS=$( \
+    printf '%s\n' \
+    archlinux kalilinux/kali-rolling debian ubuntu alpine centos | \
+    fzf \
+  )
+
+  # stop if no input
+  if [[ -z $SELECTED_OS ]]; then
+    exit
+  fi
+
+  # run image
+  docker run --interactive=true --tty=true --rm=true $SELECTED_OS bash
+}
+
+# calling function
+docker-os
+
+# sins against the church
+source $HOME/alchemy/stash/bash-insulter/src/bash.command-not-found
+print_message

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#================================#
+# title       : quick fix        #
+# date        : 2024-09-12       #
+# author      : sunless47        #
+# description : testing a script #
+#================================#
+wbg $HOME/alchemy/stash/pics/sunless.png &
+mus
+
+# sins against the church
+source $HOME/alchemy/stash/bash-insulter/src/bash.command-not-found
+print_message

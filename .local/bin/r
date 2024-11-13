@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+#======================================#
+# title       : docker os's            #
+# date        : 2024-09-16             #
+# author      : sunless47              #
+# description : run containerized os's #
+#======================================#
+
+# error handling (set -euo pipefail)
+set -o errexit
+set -o nounset
+set -o pipefail
+
+
+# delete files and folders in the directory
+multiple-files-deleter() {
+  ls \
+    --almost-all \
+    --reverse \
+    --sort=size \
+    --quoting-style=shell | \
+  fzf \
+    --multi | \
+  xargs --open-tty --no-run-if-empty --verbose \
+  rm -I  --verbose --recursive
+}
+
+# calling function
+multiple-files-deleter

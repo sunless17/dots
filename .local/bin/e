@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+#===================================================#
+# title       : configs editor                      #
+# date        : 2024-09-16                          #
+# author      : sunless47                           #
+# description : all user configs located in .config #
+#===================================================#
+
+# error handling (set -euo pipefail)
+set -o errexit
+set -o nounset
+set -o pipefail
+
+# list and select configs
+emacsclient-emacs-29 \
+		--reuse-frame \
+		--tty \
+		$@

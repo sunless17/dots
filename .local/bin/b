@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+#===================================#
+# title       : bash editor         #
+# date        : 2024-09-16          #
+# author      : sunless47           #
+# description : bash configs editor #
+#===================================#
+
+# error handling (set -euo pipefail)
+set -o errexit
+set -o nounset
+set -o pipefail
+
+# edit bash related configs
+bash-configs() {
+  # all configs as an array
+  CONF=( \
+    "$HOME/.config/bash/alias" \ 
+    "$HOME/.config/bash/conf" \ 
+    "$HOME/.bashrc" \ 
+  )
+
+  # list with fzf and open with nvim
+  SH_SCRPT=$( \
+    find ${CONF[@]} | \
+    fzf \
+      --multi \
+      --wrap \
+      --no-unicode \
+      --keep-right \
+      --preview 'bat {}' \
+    )
+
+  # stop if no input
+  if [[ -n $SH_SCRPT ]]; then
+    # open with neovim
+    #nvim "${SH_SCRPT}"
+    emacsclient \
+      --reuse-frame \
+      --tty \
+      "${SH_SCRPT}"
+  fi
+}
+
+# calling function
+bash-configs

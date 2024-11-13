@@ -1,3 +1,6 @@
 alias ls='ls \
             --color=always \
             --almost-all'
+alias dot='git \
+						--git-dir=$HOME/stash/dot/ \
+						--work-tree=$HOME'

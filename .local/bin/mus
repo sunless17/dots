@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+#==================================================#
+# title       : music downloader                   #
+# date        : 2024-09-16                         #
+# author      : sunless47                          #
+# description : download best quality from youtube #
+#==================================================#
+
+# error handling (set -euo pipefail)
+set -o errexit
+set -o nounset
+set -o pipefail
+
+# download with play music
+mpv --shuffle --no-terminal --loop-playlist --playlist=/home/sunless/silence/night &
+#mpvpaper --mpv-options "--no-terminal --loop-playlist shuffle" '*' $HOME/silence/night &
+
+# wallpaper
+wbg ${HOME}/stash/pics/sunless.png &
+killall wbg
+wbg ${HOME}/stash/pics/sunless.png &

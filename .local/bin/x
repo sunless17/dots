@@ -1,0 +1,95 @@
+#!/usr/bin/env bash
+#============================================#
+# title       : clean up the bloat           #
+# date        : 2024-09-16                   #
+# author      : sunless47                    #
+# description : free memory and unused cache #
+#============================================#
+
+# error handling (set -euo pipefail)
+#set -o errexit
+#set -o nounset
+#set -o pipefail
+
+
+# app deleting function
+deleter(){
+  # list packages without the version numbers (quiet huh...)
+  pacman \
+    --query \
+    --color always \
+    --explicit \
+    --unrequired \
+    --quiet | \
+
+  # query the info of the selected package in fzf
+  fzf \
+    --multi \
+    --no-unicode \
+    --preview 'pacman --query --info {1}' | \
+
+  # deleted the selected apps and their dependecies
+  xargs \
+    --open-tty \
+    --no-run-if-empty \
+    sudo pacman \
+    --remove \
+    --recursive \
+    --unneeded \
+    --nosave
+}
+
+# bloat deleting function
+bloat(){
+  # list packages without the version numbers (quiet huh...)
+  pacman \
+    --query \
+    --color always \
+    --deps \
+    --unrequired \
+    --quiet | \
+
+  # query the info of the selected package in fzf
+  fzf \
+    --multi \
+    --no-unicode \
+    --preview 'pacman --query --color always --info {1}' | \
+
+  # deleted the selected apps and their dependecies
+  xargs \
+    --open-tty \
+    --no-run-if-empty \
+    sudo pacman \
+    --remove \
+    --color always \
+    --recursive \
+    --unneeded \
+    --nosave
+}
+
+# cleaning and freeing up memory
+clean(){
+  # clean with paccache
+  paccache \
+    --remove \
+    --uninstalled \
+    --verbose \
+    --keep 0
+  # clean with pacman
+  sudo pacman \
+    --sync \
+    --clean \
+    --clean \
+    --quiet
+}
+
+
+# run functions
+deleter
+bloat
+clean
+#browse-apps
+
+# sins against the church
+source $HOME/alchemy/stash/bash-insulter/src/bash.command-not-found
+print_message

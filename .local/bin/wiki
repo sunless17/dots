@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+#========================================================#
+# title       : wikipedia                                #
+# date        : 2024-09-16                               #
+# author      : sunless47                                #
+# description : offline wikipedia using docker and kiwix #
+#========================================================#
+
+# error handling (set -euo pipefail)
+set -o errexit
+set -o nounset
+set -o pipefail
+
+# start ollama container
+wik() {
+  docker start wiki
+  qutebrowser http://localhost:42069/ 2>/dev/null &
+}
+
+# calling function
+wik

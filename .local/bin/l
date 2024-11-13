@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#================================#
+# title       : clear #
+# date        : 2024-09-12       #
+# author      : sunless47        #
+# description : clearing terminal script #
+#================================#
+cliya() {
+  clear
+  fortune 
+}
+
+# execute
+cliya

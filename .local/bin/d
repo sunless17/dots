@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+#============================================#
+# title       : offline documentation        #
+# date        : 2024-09-16                   #
+# author      : sunless47                    #
+# description : offline documentation viewer #
+#============================================#
+
+# error handling (set -euo pipefail)
+set -o errexit
+set -o nounset
+set -o pipefail
+
+# rust documentation
+rust_docs() 
+{
+  # initialize docs directory variable
+  RUST_DOCS='/home/sunless/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/share/doc/rust/html/index.html'
+
+  # stop if no input
+  if [[ -n $RUST_DOCS ]]; then
+    # opening with librewolf
+    librewolf ${RUST_DOCS} 2> /dev/null & 
+  fi
+}
+
+# run function
+rust_docs
+
+# sins against the church
+source $HOME/alchemy/stash/bash-insulter/src/bash.command-not-found
+print_message

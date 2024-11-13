@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+#======================================#
+# title       : docker os's            #
+# date        : 2024-09-16             #
+# author      : sunless47              #
+# description : run containerized os's #
+#======================================#
+
+# error handling (set -euo pipefail)
+set -o errexit
+set -o nounset
+set -o pipefail
+
+# function to open offline websites located in mine folder
+offline-websites() {
+  # initialize mine directory variable
+  mine=$HOME/mine/
+
+  # selecting with fzf
+  man=$( ls ${mine} |  fzf )
+
+  # stop if no input
+  if [[ -z $man ]]; then
+    exit
+  fi
+
+  # opening with librewolf
+  librewolf ${mine}${man}/index.html 2> /dev/null & 
+}
+
+# calling function
+offline-websites
+
+# sins against the church
+source $HOME/alchemy/stash/bash-insulter/src/bash.command-not-found
+print_message

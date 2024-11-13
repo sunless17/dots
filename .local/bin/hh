@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+#====================================================#
+# title       : book viewer                          #
+# date        : 2024-09-16                           #
+# author      : sunless47                            #
+# description : view books from the 'hell' directory #
+#====================================================#
+
+# error handling (set -euo pipefail)
+set -o errexit
+set -o nounset
+set -o pipefail
+
+# get all books in the library (hell)
+hell() {
+  # hell directory
+  dire=$HOME/hell
+
+  # selecting topic
+  topic=$( \
+    find ${dire}/* -type d | \
+    awk -F / '{print $5}' | \
+    fzf --wrap --wrap-sign='> ' --exit-0 \
+  )
+
+  # stop if no input
+  if [[ -z $topic ]]; then
+    exit
+  fi
+
+  # selecting book
+  book=$( \
+    find ${dire}/${topic} -type f | \
+    awk -F / '{print $6}' | \
+    fzf --wrap --wrap-sign='> ' --exit-0 \
+  )
+
+  # stop if no input
+  if [[ -z $book ]]; then
+    exit
+  fi
+
+  # stop if no input
+  if [[ -d /tmp/books ]]; then
+    # convert to text and view with less
+    pdftotext -nodiag -nopgbrk ${dire}/${topic}/"${book}" /tmp/books/"${book}"
+    less /tmp/books/"${book}"
+    rm /tmp/books/*
+  else
+    # make the directory
+    mkdir /tmp/books
+    # convert to text and view with less
+    pdftotext -nodiag -nopgbrk ${dire}/${topic}/"${book}" /tmp/books/"${book}"
+    less /tmp/books/"${book}"
+    rm /tmp/books/*
+  fi
+}
+
+# calling function
+hell
+
+# sins against the church
+source $HOME/alchemy/stash/bash-insulter/src/bash.command-not-found
+print_message

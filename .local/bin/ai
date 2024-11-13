@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+#============================================================#
+# title       : local ai                                     #
+# date        : 2024-09-16                                   #
+# author      : sunless47                                    #
+# description : run tiny dolphin llm from a docker container #
+#============================================================#
+
+# error handling (set -euo pipefail)
+set -o errexit
+set -o nounset
+set -o pipefail
+
+# start local ai from the ollama container
+llm() {
+  # start docker container named 'ai'
+  docker start ai
+  # open the container in interactive mode and run 'ollama run tinydolpin'
+  docker exec --interactive=true --tty=true ai ollama run tinydolphin
+}
+
+# calling function
+llm

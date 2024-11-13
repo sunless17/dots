@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+#========================================#
+# title       : edit scripts             #
+# date        : 2024-09-16               #
+# author      : sunless47                #
+# description : edit my personal scripts #
+#========================================#
+
+# error handling (set -euo pipefail)
+set -o errexit
+set -o nounset
+set -o pipefail
+
+scripts(){
+  # target directory
+  dire="$HOME/.local/bin"
+
+  # list everything, print specific column, preview with bat
+  script=$(
+    find ${dire} -type f |
+      awk -F / '{print $6}' |
+      fzf \
+        --multi \
+        --keep-right \
+        --preview 'bat --language bash $HOME/.local/bin/{}'
+  )
+
+  # stop if no input
+  if [[ -n $script ]]; then
+    # open with nvim
+    emacsclient-emacs-29 \
+      --reuse-frame \
+      --tty \
+      "${dire}/${script}"
+  fi
+
+}
+
+# calling functions
+scripts

@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+#===================================================#
+# title       : configs editor                      #
+# date        : 2024-09-16                          #
+# author      : sunless47                           #
+# description : all user configs located in .config #
+#===================================================#
+
+# error handling (set -euo pipefail)
+set -o errexit
+set -o nounset
+set -o pipefail
+
+# list and select configs
+configs() {
+  # target directory
+  confs=( \
+    "$HOME/.config/foot/" \
+    "$HOME/.config/emacs/configs/" \
+    "$HOME/.config/emacs/init.el" \
+    "$HOME/.config/fd/" \
+    "$HOME/.config/newsboat/" \
+    "$HOME/.config/ytfzf/" \
+  )
+
+	# emacsclient config 
+	source=$HOME/.local/bin/e
+	EMACS=e
+
+  # list configs with fzf and open with emacs
+  find ${confs[@]} -type f |
+    fzf --multi --keep-right --preview 'bat {1}' |
+    xargs --no-run-if-empty \
+					$EMACS
+}
+
+# calling function
+configs
+

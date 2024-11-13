@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+#==================================================#
+# title       : music downloader                   #
+# date        : 2024-09-16                         #
+# author      : sunless47                          #
+# description : download best quality from youtube #
+#==================================================#
+
+# error handling (set -euo pipefail)
+set -o errexit
+set -o nounset
+set -o pipefail
+
+# download with yt-dlp
+yt-dlp \
+  --embed-thumbnail \
+  --extract-audio \
+  --audio-format 'mp3' \
+  --audio-quality '0' \
+  --no-playlist \
+  $1
