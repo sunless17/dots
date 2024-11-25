@@ -20,13 +20,9 @@ rust_docs()
   # stop if no input
   if [[ -n $RUST_DOCS ]]; then
     # opening with librewolf
-    librewolf ${RUST_DOCS} 2> /dev/null & 
+    librewolf ${RUST_DOCS} 2>/dev/null &
   fi
 }
 
 # run function
 rust_docs
-
-# sins against the church
-source $HOME/alchemy/stash/bash-insulter/src/bash.command-not-found
-print_message

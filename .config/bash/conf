@@ -17,6 +17,8 @@ export FZF_ALT_C_COMMAND="fd --type d --hidden --follow . "
 # noice
 shopt -s autocd
 shopt -s cdspell
+
+# evil
 #set -o vi
 
 # profile stuffs
@@ -33,10 +35,3 @@ shopt -s cdspell
 # export XDG_CONFIG_HOME="${HOME}/.config/"
 # export XDG_LOCAL_HOME="${HOME}/.local/share"
 #
-# if test -z "${XDG_RUNTIME_DIR}"; then
-#   export XDG_RUNTIME_DIR=/tmp/${UUID}-runtime-dir
-#   if ! test -d "${XDG_RUNTIME_DIR}"; then
-#     mkdir "${XDG_RUNTIME_DIR}"
-#     chmod 0700 "${XDG_RUNTIME_DIR}"
-#   fi 
-# fi

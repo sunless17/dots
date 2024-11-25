@@ -14,7 +14,7 @@ set -o nounset
 # get specific book in the directory
 specific-book() {
   # list everything with fzf
-  book=$(find *.epub *.pdf 2> /dev/null | fzf)
+  book=$(find *.epub *.pdf *.cbz 2> /dev/null | fzf)
 
   # stop if no input
   if [[ -z $book ]]; then

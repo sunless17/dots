@@ -30,7 +30,3 @@ offline-websites() {
 
 # calling function
 offline-websites
-
-# sins against the church
-source $HOME/alchemy/stash/bash-insulter/src/bash.command-not-found
-print_message

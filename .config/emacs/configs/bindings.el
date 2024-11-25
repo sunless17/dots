@@ -22,9 +22,19 @@
 		(kbd "<leader>u") 'gentoo-visit
 		(kbd "<leader>f") 'find-file
 		(kbd "<leader>s") 'save-some-buffers
-		(kbd "<leader>e") 'treemacs
+		(kbd "z f") 'vimish-fold
+		(kbd "z o") 'vimish-fold-unfold
+		(kbd "z d") 'vimish-fold-delete-all
 		(kbd "<leader>l") 'switch-to-buffer)
   (evil-mode))
+
+(use-package vimish-fold
+  :ensure
+  :after evil)
+(use-package evil-vimish-fold
+  :ensure
+  :after vimish-fold
+  :hook ((prog-mode conf-mode text-mode) . evil-vimish-fold-mode))
 
 (use-package evil-collection
   :after evil

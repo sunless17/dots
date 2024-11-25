@@ -11,11 +11,9 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-# download with yt-dlp
-yt-dlp \
-  --embed-thumbnail \
-  --extract-audio \
-  --audio-format 'mp3' \
-  --audio-quality '0' \
-  --no-playlist \
-  "$1"
+# download with play music
+mpv \
+		--shuffle \
+		--no-terminal \
+		--loop-playlist \
+		--playlist=/home/sunless/silence/favela &
